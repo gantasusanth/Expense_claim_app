@@ -8,15 +8,19 @@
 </head>
 <body class="aurora-bg">
   <main class="center-wrap">
-    <div class="login-card" role="main" aria-labelledby="loginTitle">
-      <img src="assets/logo.png" alt="MANE logo" class="logo" onerror="this.style.display='none'">
+    <div class="logo-top">
+      <img src="assets/logo.png" alt="MANE logo" class="logo-top-img" onerror="this.style.display='none'">
+    </div>
+    <div class="login-card glass" role="main" aria-labelledby="loginTitle">
       <h1 id="loginTitle">Travel Expense Claim</h1>
       <form id="loginForm" autocomplete="off">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" placeholder="Enter username" required>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="Enter password" required>
-        <button type="submit" class="primary-btn">Log In</button>
+        <div class="input-row">
+          <input id="username" name="username" type="text" placeholder="Username" required>
+        </div>
+        <div class="input-row">
+          <input id="password" name="password" type="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="primary-btn">Login</button>
         <p id="errorMessage" class="error"></p>
       </form>
       <p class="hint">Demo credentials: <strong>user</strong> / <strong>pass</strong></p>

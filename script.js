@@ -30,20 +30,6 @@ window.logout = function(){
   window.location.href = 'login.html';
 }
 
-// Simple storage helpers
-function loadExpenses(){ const s = localStorage.getItem(EXPENSES_KEY); return s?JSON.parse(s):[]; }
-function saveExpenses(e){ localStorage.setItem(EXPENSES_KEY,JSON.stringify(e)); }
-
-function manageReportId(){
-  let reportId = localStorage.getItem(REPORT_ID_KEY);
-  if (!reportId){
-    reportId = 'EXP-' + Math.floor(Math.random()*90000+10000);
-    localStorage.setItem(REPORT_ID_KEY, reportId);
-  }
-  const el = document.getElementById('reportIdDisplay');
-  if (el) el.textContent = reportId;
-}
-
 function calculateTotalFromTable(){
   const tbody = document.getElementById('expenseList');
   if (!tbody) return;
@@ -79,7 +65,6 @@ function deleteRow(){
     tbody.removeChild(rows[rows.length-1]);
     calculateTotalFromTable();
   } else {
-    // clear first row
     rows[0].querySelectorAll('td').forEach(td => td.textContent='');
     calculateTotalFromTable();
   }
@@ -88,10 +73,7 @@ function deleteRow(){
 function setupPrintButton(){
   const btn = document.getElementById('printBtn');
   if (btn){
-    btn.addEventListener('click', () => {
-      // Ensure all content editable cells are committed
-      window.print();
-    });
+    btn.addEventListener('click', () => { window.print(); });
   }
 }
 
@@ -107,11 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   } else if (current === 'index.html'){
-    // wire buttons
-    document.getElementById('addRow').addEventListener('click', addRow);
-    document.getElementById('deleteRow').addEventListener('click', deleteRow);
+    const addBtn = document.getElementById('addRow');
+    if (addBtn) addBtn.addEventListener('click', addRow);
+    const delBtn = document.getElementById('deleteRow');
+    if (delBtn) delBtn.addEventListener('click', deleteRow);
     setupPrintButton();
-    // compute totals for existing editable cells
     document.querySelectorAll('#expenseList td[contenteditable="true"]').forEach(td => td.addEventListener('input', calculateTotalFromTable));
     calculateTotalFromTable();
   }
