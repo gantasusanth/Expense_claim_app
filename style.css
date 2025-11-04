@@ -4,7 +4,7 @@ body {
     padding: 20px;
 }
 .container {
-    max-width: 800px; /* Increased width to fit the table */
+    max-width: 800px; /* Wider to accommodate the table */
     margin: 0 auto;
     background: #fff;
     padding: 30px;
@@ -34,7 +34,7 @@ input, select, textarea {
     box-sizing: border-box;
 }
 button {
-    background-color: #007bff;
+    background-color: #007bff; 
     color: white;
     padding: 10px 15px;
     border: none;
@@ -45,9 +45,9 @@ button {
     transition: background-color 0.3s;
 }
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; 
 }
-/* New CSS for the expense table */
+/* CSS for the expense table */
 #expenseTable {
     width: 100%;
     border-collapse: collapse;
@@ -62,3 +62,8 @@ button:hover {
     background-color: #f2f2f2;
     color: #333;
 }
+/* Style the footer row for the total */
+#expenseTable tfoot td {
+    border-top: 2px solid #333; /* Heavy line above the total */
+}
+ 
