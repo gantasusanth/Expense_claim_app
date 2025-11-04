@@ -3,73 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Claim App</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>Travel Expense Claim Request - Replica</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <div class="container" id="expenseReport">
+    <div class="app-container">
         
-        <button onclick="logout()" style="position: absolute; top: 10px; right: 10px; width: auto; margin-top: 0; padding: 5px 10px; background-color: #dc3545;">Log Out</button>
-        
-        <h1>Expense Claim Report</h1>
+        <div class="header-bar">
+            <h2>Travel Expense Claim Request</h2>
+            <div class="header-buttons">
+                <button class="icon-button">H</button>
+                <button class="icon-button"></button> <button class="icon-button"></button>
+            </div>
+        </div>
  
-        <p style="text-align: center; font-weight: bold;">Report ID: <span id="reportIdDisplay"></span></p>
- 
-        <button id="newReportBtn" style="width: auto; padding: 10px 20px; margin: 10px auto; display: block;">Start New Report</button>
-        
-        <hr>
- 
-        <form id="expenseForm">
-            <h2>Add/Edit Expense Details</h2>
-            <label for="date">Date:</label>
-            <input type="date" id="date" required>
- 
-            <label for="category">Category:</label>
-            <select id="category" required>
-                <option value="Travel">Travel</option>
-                <option value="Food">Food</option>
-                <option value="Software">Software</option>
-                <option value="Other">Other</option>
-            </select>
- 
-            <label for="amount">Amount ($):</label>
-            <input type="number" id="amount" step="0.01" required>
- 
-            <label for="description">Description:</label>
-            <textarea id="description" required></textarea>
- 
-            <button type="submit" id="addExpenseBtn">Add Expense</button>
-        </form>
- 
-        <hr>
-        <h2>Submitted Claims</h2>
-        <table id="expenseTable">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Amount ($)</th>
-                    <th>Actions</th> 
-                </tr>
-            </thead>
-            <tbody id="expenseList"> 
-            </tbody>
+        <div class="form-content">
             
-            <tfoot>
-                <tr>
-                    <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL CLAIM AMOUNT:</td> 
-                    <td id="totalAmount" style="font-weight: bold;">$0.00</td>
-                    <td></td> 
-                </tr>
-            </tfoot>
-        </table>
-        
-        <button id="downloadPdfBtn">Download PDF Report</button>
+            <div class="left-panel">
+                <div class="section-title">Header</div>
+                <div class="field-row">
+                    <label>Ref</label>
+                    <input type="text" value="MIPL/110/4388">
+                    <label>Employee Id</label>
+                    <input type="text" value="MIPL/0507/2024">
+                </div>
+                <div class="field-row">
+                    <label>PID</label>
+                    <input type="text" value="SINS">
+                    <label>Designation</label>
+                    <input type="text" value="Executive - IT Application">
+                </div>
+                <div class="field-row">
+                    <label>Name</label>
+                    <input type="text" value="Sumanth GANTA">
+                    <label>Department</label>
+                    <input type="text" value="Information Technology">
+                </div>
+                <div class="field-row">
+                    <label>Subject</label>
+                    <input type="text" class="subject-input" value="">
+                </div>
+                <div class="field-row">
+                    <label>Places Visited</label>
+                    <input type="text" class="subject-input" value="">
+                </div>
+                
+                <div class="claim-type-section">
+                    <label>Claim Type</label>
+                    <input type="radio" name="claim_type" checked> Local
+                    <input type="radio" name="claim_type"> Out Station
+                </div>
  
+                <div class="field-row">
+                    <div class="error-message">Error Message:</div>
+                </div>
+                
+            </div>
+ 
+            <div class="right-panel">
+                <div class="field-row">
+                    <label>Date</label>
+                    <input type="text" value="04-11-2025" style="width: 80px;">
+                    <button class="select-report-button">Select Final Report</button>
+                </div>
+ 
+                <div class="calculations-box">
+                    <div class="calc-row">
+                        <label>Total Exp. Incurred</label>
+                        <input type="text" value="0" readonly>
+                    </div>
+                    <div class="calc-row">
+                        <label>Date Of Dep.</label>
+                        <input type="text" value="04-11-2025">
+                    </div>
+                    <div class="calc-row">
+                        <label>Date Of Arr.</label>
+                        <input type="text" value="04-11-2025">
+                    </div>
+                    <div class="calc-row">
+                        <label>Advance Drawn</label>
+                        <input type="text" value="0" readonly>
+                    </div>
+                    <div class="calc-row">
+                        <label>(- ) Less Expenses Incurred</label>
+                        <input type="text" value="0" readonly>
+                    </div>
+                    <div class="calc-row balance-row">
+                        <label>Balance</label>
+                        <input type="text" value="0" readonly>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+ 
+        <div class="local-expense-section">
+            <div class="section-title">Local</div>
+            <div class="detail-actions">
+                <button class="detail-button">Add New Row</button>
+                <button class="detail-button">Delete</button>
+            </div>
+            
+            <table class="expense-detail-table">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Date</th>
+                        <th style="width: 10%;">Expense Type</th>
+                        <th style="width: 15%;">Description</th>
+                        <th style="width: 10%;">From</th>
+                        <th style="width: 10%;">To</th>
+                        <th style="width: 10%;">Mode Of Travel</th>
+                        <th style="width: 12%;">No. KM (For OWN Vehicle)</th>
+                        <th style="width: 15%;">Amount (Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
  
