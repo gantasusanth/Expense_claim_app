@@ -9,6 +9,9 @@
 </head>
 <body>
     <div class="container" id="expenseReport">
+        
+        <button onclick="logout()" style="position: absolute; top: 10px; right: 10px; width: auto; margin-top: 0; padding: 5px 10px; background-color: #dc3545;">Log Out</button>
+        
         <h1>Expense Claim Report</h1>
  
         <p style="text-align: center; font-weight: bold;">Report ID: <span id="reportIdDisplay"></span></p>
@@ -58,7 +61,8 @@
                 <tr>
                     <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL CLAIM AMOUNT:</td> 
                     <td id="totalAmount" style="font-weight: bold;">$0.00</td>
-                    <td></td> </tr>
+                    <td></td> 
+                </tr>
             </tfoot>
         </table>
         

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Expense Claim App</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Specific styles for the login form to keep it centered and small */
+        .login-container {
+            max-width: 400px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .login-container h1 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container login-container">
+        <h1>Expense App Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" value="user" required>
+            <small style="color: gray;">(Hint: use 'user')</small>
+ 
+            <label for="password">Password:</label>
+            <input type="password" id="password" value="pass" required>
+            <small style="color: gray;">(Hint: use 'pass')</small>
+ 
+            <button type="submit" id="loginBtn">Log In</button>
+        </form>
+        <p id="errorMessage" style="color: red; text-align: center; margin-top: 15px;"></p>
+    </div>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
+ 
