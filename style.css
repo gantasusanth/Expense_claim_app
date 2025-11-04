@@ -1,248 +1,126 @@
-/* Global Reset and Base Styles */
-body {
-    background-color: #f0f0f0; /* Light background behind the app window */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
+/* Unified Styles for MANE Travel Expense Claim App */
+/* Reset */
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body,html{height:100%;margin:0;padding:0}
+
+/* Aurora background (slow, soft motion) */
+.aurora-bg{
+  min-height:100vh;
+  background: linear-gradient(180deg,#072126 0%, #0a2b2b 30%, #08302f 60%, #071d1f 100%);
+  position:relative;
+  overflow:hidden;
 }
- 
-.app-container {
-    width: 950px; /* Approximate width based on the screenshot */
-    margin: 20px auto;
-    border: 2px solid #a0a0a0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: #e0e0e0; /* Main app background color */
+/* Create layered animated gradients for aurora effect */
+.aurora-bg::before, .aurora-bg::after{
+  content:'';
+  position:absolute;
+  top:-30%;
+  left:-10%;
+  width:140%;
+  height:200%;
+  background: radial-gradient(closest-side, rgba(36,171,153,0.12), transparent 40%),
+              linear-gradient(90deg, rgba(19,124,112,0.08), rgba(115,197,95,0.06));
+  filter: blur(40px) saturate(110%);
+  transform: rotate(-10deg) translate3d(0,0,0);
+  animation: drift 18s linear infinite;
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode: screen;
 }
- 
-/* --- 1. Header Bar --- */
-.header-bar {
-    background-color: #d0d0d0;
-    color: #333;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #a0a0a0;
+.aurora-bg::after{
+  top:-20%;
+  left:-30%;
+  background: radial-gradient(closest-side, rgba(141,211,115,0.09), transparent 30%),
+              linear-gradient(120deg, rgba(10,60,60,0.05), rgba(200,250,200,0.03));
+  filter: blur(70px) saturate(120%);
+  animation-duration: 26s;
+  opacity:0.9;
 }
-.header-bar h2 {
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
+@keyframes drift{
+  0%{transform: translateX(-5%) translateY(0) rotate(-8deg)}
+  50%{transform: translateX(5%) translateY(4%) rotate(-6deg)}
+  100%{transform: translateX(-5%) translateY(0) rotate(-8deg)}
 }
-.header-buttons button {
-    background-color: #e0e0e0;
-    border: 1px solid #a0a0a0;
-    color: #333;
-    width: 25px;
-    height: 25px;
-    margin-left: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
+
+/* App container sits above background */
+.app-container{
+  width:95%;
+  max-width:980px;
+  margin:28px auto;
+  background: rgba(255,255,255,0.90);
+  border-radius:8px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.25);
+  overflow:hidden;
+  position:relative;
+  z-index:2;
 }
-.header-buttons button:hover {
-    background-color: #fff;
+
+/* Header */
+.header-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:linear-gradient(90deg,#e6f3ed,#dff0e6);border-bottom:1px solid #d0ded2}
+.brand{display:flex;align-items:center;gap:12px}
+.brand h2{font-size:18px;color:#0b4a3b;margin:0}
+.logo-small{height:42px;display:block}
+
+/* Header actions */
+.header-actions{display:flex;gap:8px}
+.ghost-btn{background:transparent;border:1px solid rgba(11,74,59,0.12);padding:8px 12px;border-radius:6px;cursor:pointer}
+.ghost-btn:hover{background:rgba(11,74,59,0.04)}
+
+/* Main layout */
+.form-content{display:flex;gap:10px;padding:16px}
+.left-panel{flex:1.6;padding-right:8px}
+.right-panel{flex:0.9;padding-left:8px}
+
+/* Sections and fields */
+.section-title{font-weight:700;color:#0b4a3b;background:#e7f4ec;padding:6px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.field-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.field-row.single{flex-direction:column;align-items:flex-start}
+.field-row label{width:110px;text-align:right;color:#1f5a4a;font-weight:700}
+.field-row input[type="text"], .field-row input[type="date"]{flex:1;padding:8px;border:1px solid #c8d9cf;border-radius:6px;background:white}
+
+/* Claim type */
+.claim-type-section{border:1px solid #d6e8dd;padding:8px;border-radius:6px;background:#fff;margin-top:6px}
+.claim-type-section .radios label{margin-right:12px}
+
+/* Calculations box */
+.calculations-box{border:1px solid #d6e8dd;padding:10px;border-radius:6px;background:#fafdfb}
+.calc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.calc-row label{width:56%;text-align:left;color:#135c4b}
+.calc-row input{width:40%;padding:6px;border:1px solid #c8d9cf;border-radius:6px;text-align:right}
+
+/* Table */
+.local-expense-section{padding:12px}
+.detail-actions{display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px}
+.detail-button{padding:8px 10px;border-radius:6px;border:1px solid #c8d9cf;background:#fff;cursor:pointer}
+.expense-detail-table{width:100%;border-collapse:collapse;background:white;border:1px solid #d6e8dd}
+.expense-detail-table th, .expense-detail-table td{padding:8px;border:1px solid #eef6f0;text-align:left}
+.expense-detail-table tbody td[contenteditable="true"]{background:#fff9f6}
+
+/* Footer */
+.app-footer{padding:10px 16px;background:#f6fbf8;color:#25624f;font-size:13px}
+
+/* Login card */
+.center-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+.login-card{width:100%;max-width:380px;background:rgba(255,255,255,0.96);padding:26px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.25);text-align:center}
+.login-card .logo{height:70px;margin-bottom:10px}
+.login-card h1{color:#0b4a3b;margin-bottom:18px}
+.login-card label{display:block;text-align:left;margin-left:10px;color:#145a47;font-weight:700;margin-top:8px}
+.login-card input{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #d0e6dd}
+.primary-btn{margin-top:18px;padding:10px 12px;background:linear-gradient(90deg,#0b6a55,#2aa06e);color:white;border:none;border-radius:8px;cursor:pointer}
+.primary-btn:hover{filter:brightness(1.03)}
+
+/* error/hint */
+.error{color:#a00;margin-top:8px}
+.hint{color:#666;margin-top:10px;font-size:13px}
+
+/* Responsive */
+@media (max-width:900px){.form-content{flex-direction:column}.left-panel,.right-panel{padding:8px}}
+
+/* Print styling: include entire form and hide buttons */
+@media print{
+  body{background:white}
+  .aurora-bg::before,.aurora-bg::after{display:none}
+  .header-actions, .detail-actions, .ghost-btn, #addRow, #deleteRow, .select-report-button{display:none !important}
+  .app-container{box-shadow:none;border-radius:0;width:100%;margin:0}
+  .login-card{box-shadow:none;border-radius:0}
 }
-/* Placeholder for the 'H' icon from the image */
-.header-buttons button:nth-child(1) {
-    background-color: #a0c0a0;
-}
- 
- 
-/* --- 2. Main Form Layout --- */
-.form-content {
-    background-color: #e0e0e0;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
- 
-.left-panel, .right-panel {
-    background-color: #e0e0e0;
-    padding: 5px;
-}
- 
-.left-panel {
-    flex: 1.5; /* Takes up more space */
-    min-width: 600px;
-}
- 
-.right-panel {
-    flex: 1;
-    min-width: 300px;
-    padding-top: 25px; /* Aligns with the Header section title */
-}
- 
-.section-title {
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 5px;
-    padding-left: 5px;
-    border-bottom: 1px solid #a0a0a0;
-    background-color: #c0c0c0; /* Mimics the header background */
-    width: 50px;
-}
- 
-/* Row Styling */
-.field-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2px;
-}
-.field-row label {
-    width: 80px; /* Fixed width for labels */
-    text-align: right;
-    padding-right: 5px;
-    color: #333;
-}
-.field-row input[type="text"] {
-    flex-grow: 1;
-    border: 1px solid #808080;
-    padding: 2px;
-    margin-right: 15px;
-    background-color: #fff;
-}
-/* Adjustments for the input fields in the header */
-.left-panel .field-row input[type="text"]:nth-of-type(1) {
-    width: 150px;
-    flex-grow: 0;
-}
-.left-panel .field-row input[type="text"]:nth-of-type(2) {
-    width: 180px;
-    flex-grow: 0;
-}
- 
-.subject-input {
-    flex-grow: 1 !important;
-    width: auto !important;
-    margin-right: 20px !important;
-}
- 
-/* Claim Type Section */
-.claim-type-section {
-    padding: 5px;
-    margin-top: 5px;
-    border: 1px solid #a0a0a0;
-    background-color: #fff;
-}
-.claim-type-section label {
-    font-weight: bold;
-    margin-right: 10px;
-    width: auto;
-    text-align: left;
-}
-.claim-type-section input[type="radio"] {
-    margin-right: 5px;
-    margin-left: 15px;
-}
- 
-.error-message {
-    border: 1px solid #808080;
-    background-color: #fff;
-    width: 100%;
-    height: 20px;
-    padding: 2px;
-    margin: 5px 20px 5px 5px;
-}
- 
-/* Right Panel Calculations */
-.right-panel .field-row {
-    justify-content: flex-start;
-}
-.select-report-button {
-    background-color: #c0c0c0;
-    border: 1px solid #808080;
-    padding: 3px 8px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 10px;
-    white-space: nowrap;
-}
- 
-.calculations-box {
-    border: 1px solid #808080;
-    background-color: #f0f0f0; /* Lighter box background */
-    margin-top: 10px;
-    padding: 5px;
-}
-.calc-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1px;
-}
-.calc-row label {
-    width: 180px; /* Wide label for calculation row */
-    font-size: 11px;
-    text-align: right;
-}
-.calc-row input {
-    width: 70px;
-    border: 1px solid #808080;
-    padding: 2px;
-    text-align: right;
-    margin-right: 5px;
-}
-.balance-row label {
-    font-weight: bold;
-}
-.balance-row input {
-    font-weight: bold;
-}
- 
- 
-/* --- 3. Local Expense Detail Section --- */
- 
-.local-expense-section {
-    background-color: #e0e0e0;
-    padding: 10px;
-}
-.local-expense-section .section-title {
-    width: 40px;
-    margin-bottom: 0;
-}
- 
-.detail-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
-}
-.detail-button {
-    background-color: #c0c0c0;
-    border: 1px solid #808080;
-    padding: 3px 8px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 5px;
-}
- 
-/* Table Styling */
-.expense-detail-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #808080;
-    background-color: #fff;
-}
-.expense-detail-table th {
-    background-color: #c0c0c0;
-    border: 1px solid #808080;
-    padding: 5px;
-    text-align: center;
-    font-weight: bold;
-    height: 30px; /* Add height to headers */
-}
-.expense-detail-table td {
-    border: 1px solid #e0e0e0; /* Lighter border for inner cells */
-    padding: 5px;
-    height: 25px; /* Ensure rows have space */
-}
-.expense-detail-table tbody tr:first-child td {
-    border-top: none; /* Remove top border from the first data row */
-}
- 
-/* Ensure the area below the table has the dark grey background color */
-.app-container {
-    padding-bottom: 10px; 
-}
- 

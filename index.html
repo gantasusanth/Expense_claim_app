@@ -1,137 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Expense Claim Request - Replica</title>
-    <link rel="stylesheet" href="style.css"> 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MANE - Travel Expense Claim</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="app-container">
-        
-        <div class="header-bar">
-            <h2>Travel Expense Claim Request</h2>
-            <div class="header-buttons">
-                <button class="icon-button">H</button>
-                <button class="icon-button"></button> <button class="icon-button"></button>
-            </div>
+<body class="aurora-bg">
+  <div class="app-container">
+    <header class="header-bar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="MANE logo" class="logo-small" onerror="this.style.display='none'">
+        <h2>Travel Expense Claim</h2>
+      </div>
+      <div class="header-actions">
+        <button class="ghost-btn" id="printBtn">Print</button>
+        <button class="ghost-btn" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <main class="form-content" id="expenseReport">
+      <section class="left-panel">
+        <div class="section-title">Header</div>
+        <div class="field-row">
+          <label>Ref</label>
+          <input id="ref" type="text" value="MIPL/110/4388">
+          <label>Employee Id</label>
+          <input id="empid" type="text" value="MIPL/0507/2024">
         </div>
- 
-        <div class="form-content">
-            
-            <div class="left-panel">
-                <div class="section-title">Header</div>
-                <div class="field-row">
-                    <label>Ref</label>
-                    <input type="text" value="MIPL/110/4388">
-                    <label>Employee Id</label>
-                    <input type="text" value="MIPL/0507/2024">
-                </div>
-                <div class="field-row">
-                    <label>PID</label>
-                    <input type="text" value="SINS">
-                    <label>Designation</label>
-                    <input type="text" value="Executive - IT Application">
-                </div>
-                <div class="field-row">
-                    <label>Name</label>
-                    <input type="text" value="Sumanth GANTA">
-                    <label>Department</label>
-                    <input type="text" value="Information Technology">
-                </div>
-                <div class="field-row">
-                    <label>Subject</label>
-                    <input type="text" class="subject-input" value="">
-                </div>
-                <div class="field-row">
-                    <label>Places Visited</label>
-                    <input type="text" class="subject-input" value="">
-                </div>
-                
-                <div class="claim-type-section">
-                    <label>Claim Type</label>
-                    <input type="radio" name="claim_type" checked> Local
-                    <input type="radio" name="claim_type"> Out Station
-                </div>
- 
-                <div class="field-row">
-                    <div class="error-message">Error Message:</div>
-                </div>
-                
-            </div>
- 
-            <div class="right-panel">
-                <div class="field-row">
-                    <label>Date</label>
-                    <input type="text" value="04-11-2025" style="width: 80px;">
-                    <button class="select-report-button">Select Final Report</button>
-                </div>
- 
-                <div class="calculations-box">
-                    <div class="calc-row">
-                        <label>Total Exp. Incurred</label>
-                        <input type="text" value="0" readonly>
-                    </div>
-                    <div class="calc-row">
-                        <label>Date Of Dep.</label>
-                        <input type="text" value="04-11-2025">
-                    </div>
-                    <div class="calc-row">
-                        <label>Date Of Arr.</label>
-                        <input type="text" value="04-11-2025">
-                    </div>
-                    <div class="calc-row">
-                        <label>Advance Drawn</label>
-                        <input type="text" value="0" readonly>
-                    </div>
-                    <div class="calc-row">
-                        <label>(- ) Less Expenses Incurred</label>
-                        <input type="text" value="0" readonly>
-                    </div>
-                    <div class="calc-row balance-row">
-                        <label>Balance</label>
-                        <input type="text" value="0" readonly>
-                    </div>
-                </div>
- 
-            </div>
+        <div class="field-row">
+          <label>PID</label>
+          <input id="pid" type="text" value="SINS">
+          <label>Designation</label>
+          <input id="desig" type="text" value="Executive - IT Application">
         </div>
- 
-        <div class="local-expense-section">
-            <div class="section-title">Local</div>
-            <div class="detail-actions">
-                <button class="detail-button">Add New Row</button>
-                <button class="detail-button">Delete</button>
-            </div>
-            
-            <table class="expense-detail-table">
-                <thead>
-                    <tr>
-                        <th style="width: 8%;">Date</th>
-                        <th style="width: 10%;">Expense Type</th>
-                        <th style="width: 15%;">Description</th>
-                        <th style="width: 10%;">From</th>
-                        <th style="width: 10%;">To</th>
-                        <th style="width: 10%;">Mode Of Travel</th>
-                        <th style="width: 12%;">No. KM (For OWN Vehicle)</th>
-                        <th style="width: 15%;">Amount (Rs.)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="field-row">
+          <label>Name</label>
+          <input id="name" type="text" value="Sumanth GANTA">
+          <label>Department</label>
+          <input id="dept" type="text" value="Information Technology">
         </div>
-    </div>
+        <div class="field-row single">
+          <label>Subject</label>
+          <input id="subject" class="subject-input" type="text" value="Travel to client site">
+        </div>
+        <div class="field-row single">
+          <label>Places Visited</label>
+          <input id="places" class="subject-input" type="text" value="Dahej">
+        </div>
+        <div class="claim-type-section">
+          <label>Claim Type</label>
+          <div class="radios">
+            <label><input type="radio" name="claim_type" checked> Local</label>
+            <label><input type="radio" name="claim_type"> Out Station</label>
+          </div>
+        </div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="field-row">
+          <label>Date</label>
+          <input id="date" type="text" value="04-11-2025" style="width:100px">
+          <button class="select-report-button">Select Final Report</button>
+        </div>
+        <div class="calculations-box">
+          <div class="calc-row"><label>Total Exp. Incurred</label><input id="totalAmount" type="text" value="0" readonly></div>
+          <div class="calc-row"><label>Date Of Dep.</label><input id="dep" type="text" value="04-11-2025"></div>
+          <div class="calc-row"><label>Date Of Arr.</label><input id="arr" type="text" value="04-11-2025"></div>
+          <div class="calc-row"><label>Advance Drawn</label><input id="adv" type="text" value="0" readonly></div>
+          <div class="calc-row"><label>(-) Less Expenses Incurred</label><input id="less" type="text" value="0" readonly></div>
+          <div class="calc-row balance-row"><label>Balance</label><input id="balance" type="text" value="0" readonly></div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="local-expense-section">
+      <div class="section-title">Local</div>
+      <div class="detail-actions">
+        <button class="detail-button" id="addRow">Add New Row</button>
+        <button class="detail-button" id="deleteRow">Delete</button>
+      </div>
+      <table class="expense-detail-table" id="expenseTable">
+        <thead>
+          <tr>
+            <th style="width:8%">Date</th>
+            <th style="width:10%">Expense Type</th>
+            <th style="width:15%">Description</th>
+            <th style="width:10%">From</th>
+            <th style="width:10%">To</th>
+            <th style="width:10%">Mode Of Travel</th>
+            <th style="width:12%">No. KM (OWN Vehicle)</th>
+            <th style="width:15%">Amount (Rs.)</th>
+          </tr>
+        </thead>
+        <tbody id="expenseList">
+          <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="app-footer">
+      <div>Generated by MANE Expense System</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
- 
